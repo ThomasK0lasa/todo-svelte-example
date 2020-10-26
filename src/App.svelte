@@ -8,11 +8,12 @@
     background-color: #373b44;
     color: #282c34;
   }
-  .App {
+
+  .app {
     text-align: center;
   }
 
-  .App-header {
+  .app-header {
     border-bottom: 10px solid whitesmoke;
     margin: 5vh;
     margin-bottom: 10vh;
@@ -22,14 +23,10 @@
     font-size: calc(10px + 2vmin);
     color: whitesmoke;
   }
-
-  .App-link {
-    color: #61dafb;
-  }
 </style>
 
-<main class="App">
-  <header class="App-header">
+<main class="app">
+  <header class="app-header">
     <h1>ToDo Svelte</h1>
   </header>
   <AppForm />

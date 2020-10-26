@@ -15,7 +15,7 @@ export async function addElement(newtask) {
     if (res.status == 200) {
         getElements();
     } else {
-        console.error('WHAT?');
+        console.error('addElement Error');
     }
 }
 
@@ -27,7 +27,7 @@ export async function updateElement(index, element) {
         if (res.status == 204) {
             getElements();
         } else {
-            console.error('WHAT?');
+            console.error('updateElement Error');
         }
 }
 
@@ -37,6 +37,6 @@ export async function removeElement(index) {
     if (res.status == 204) {
         getElements();
     } else {
-        console.error('WHAT?');
+        console.error('removeElement Error');
     }
 }

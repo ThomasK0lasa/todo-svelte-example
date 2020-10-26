@@ -55,6 +55,7 @@
     border-image: linear-gradient(to right, #11998e, #38ef7d);
     border-image-slice: 1;
   }
+
   .form__field:focus ~ .form__label {
     position: absolute;
     top: 0;
@@ -90,7 +91,8 @@
 
 <div class="form__group field">
   <form on:submit|preventDefault={handleSubmit} autoComplete="off">
-      <input type="text"
+    <input
+      type="text"
       class="form__field"
       placeholder="Task"
       name="name"
