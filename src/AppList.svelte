@@ -32,19 +32,18 @@
   }
 </style>
 
-<ul>
-  {#await $elements}
-    <p>...loading</p>
-  {:then elements}
-    {#if checkIfDataExists(elements)}
+{#await $elements}
+  <p>...loading</p>
+{:then elements}
+  {#if checkIfDataExists(elements)}
+    <ul>
       {#each elements.data as item (item._id)}
         <AppListItem name={item.name} id={item._id} done={item.done} />
       {/each}
-    {:else}
-      <p>
-        Seems that You don't have any pending tasks. Use form to add new ones.
-        :)
-      </p>
-    {/if}
-  {/await}
-</ul>
+    </ul>
+  {:else}
+    <p>
+      Seems that You don't have any pending tasks. Use form to add new ones. :)
+    </p>
+  {/if}
+{/await}
