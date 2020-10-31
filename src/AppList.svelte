@@ -4,9 +4,9 @@
   import { elements } from "./storeList.js";
   import { onMount } from "svelte";
 
-  onMount(async () => {
+  /*onMount(async () => {
     getElements();
-  });
+  });*/
 
   function checkIfDataExists(elements) {
     if (elements.hasOwnProperty("data") && elements.data.length > 0) {

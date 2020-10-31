@@ -21,7 +21,7 @@
   li button {
     position: absolute;
     right: 3px;
-    top: 3px;
+    top: 6px;
     background: transparent;
     border: none;
     font-size: 2vh;
@@ -66,5 +66,5 @@
 
 <li class:done={done === true} on:click={() => updateElement(id)}>
   <span class="text">{name}</span><button
-    on:click={() => removeElement(id)}>x</button>
+    on:click={() => {removeElement(id); event.stopPropagation();}}>x</button>
 </li>

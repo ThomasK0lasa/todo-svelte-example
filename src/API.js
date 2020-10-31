@@ -1,42 +1,72 @@
 import axios from "axios";
-import { elements } from "./storeList.js";
+import { elements, canConnect } from "./storeList.js";
 
 const APIurl = "http://localhost:3001/v1/elements/";
 
-export async function getElements() {
-    elements.set(await axios.get(APIurl));
+export function checkConnection() {
+    canConnect.set(
+        axios.get(APIurl).then((res) => {
+            elements.set(res);
+            console.log();
+            return res;
+        }).catch((error) => {
+            console.error("Can't connect to db server");
+            throw error;
+        })
+    );
 }
 
+export function getElements() {
+    axios.get(APIurl).then((res) => {
+        elements.set(res);
+    }).catch((error) => {
+        canConnect.set(error);
+        console.error("Can't connect to db server");
+        throw error;
+    })
+}
+
+//this is just an example code for proper async await
 export async function addElement(newtask) {
-    let res = await axios
-        .post(APIurl, {
-            element: newtask,
-        })
-    if (res.status == 200) {
+    try {
+        await axios
+            .post(APIurl, {
+                element: newtask,
+            })
         getElements();
-    } else {
+    } catch (error) {
         console.error('addElement Error');
+        throw error;
     }
 }
 
+//this is just an example code for async await kinda without try catch
 export async function updateElement(index, element) {
+    let err;
     let res = await axios
         .put(APIurl + index, {
             element: element,
-        })
+        }).catch(error => err = error)
+    if (err) {
+        console.error('updateElement Error');
+        throw err;
+    } else {
         if (res.status == 204) {
             getElements();
-        } else {
-            console.error('updateElement Error');
         }
+    }
 }
 
-export async function removeElement(index) {
-    event.stopPropagation();
-    let res = await axios.delete(APIurl + index)
-    if (res.status == 204) {
-        getElements();
-    } else {
+//this is just an example code for then catch
+export function removeElement(index) {
+    axios.delete(APIurl + index)
+    .then(function(res) {
+        if (res.status == 204) {
+            getElements();
+        }
+    })
+    .catch(function(err) {
         console.error('removeElement Error');
-    }
+        throw err;
+    });
 }
