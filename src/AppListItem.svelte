@@ -12,13 +12,16 @@
     margin: 1vh;
     position: relative;
     padding: 1vh;
+    transition: all 0.2s ease-in-out;
   }
 
   li:hover {
+    background-color: #008f8f;
     cursor: pointer;
   }
 
   li button {
+    color: #21a0a0;
     position: absolute;
     right: 3px;
     top: 6px;
@@ -33,14 +36,14 @@
 
   li button:hover {
     cursor: pointer;
-    color: yellowgreen;
+    color: #3ffdfd;
   }
   @keyframes strike {
     0% {
       width: 0;
     }
     100% {
-      width: 120%;
+      width: calc( 100% + 40px);
     }
   }
   .done .text {
@@ -50,8 +53,8 @@
     content: " ";
     position: absolute;
     top: 50%;
-    left: -10%;
-    width: 120%;
+    left: -20px;
+    width: 0;
     height: 5px;
     background: white;
     opacity: 0.5;
